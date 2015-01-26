@@ -1,4 +1,4 @@
 # py-lander
-I need to learn how to space
+bro do you even space?
 
-Install `pygame`: `sudo apt-get install python-pygame`
+Install pygame: `sudo apt-get install python-pygame`
