@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 from lander import Lander
 from random import randint
+from pygame import freetype
 
 class App:
 
@@ -11,6 +12,8 @@ class App:
     self.screen = None
     self.size = self.width, self.height = 1200, 600
     self.clock = pygame.time.Clock()
+    freetype.init()
+    self.font = pygame.font.SysFont("monospace", 18)
 
     # Basic settings
     self.gravity = 0.01
@@ -83,7 +86,6 @@ class App:
       
       # Check if rekt
       if self.lander.speed_y > 1.0:
-        print "rekt"
         self.lander.is_rekt = True
 
       # Stop
@@ -108,6 +110,14 @@ class App:
     # Draw ground
     pygame.draw.rect(self.screen, (255, 255, 255),
       (0, self.height - self.ground_height, self.width, self.height))
+
+    # Draw message if rekt
+    if self.lander.is_rekt:
+      text = self.font.render("Rekt! Press R to try again", 1, (255, 255, 255))
+      text_rect = text.get_rect()
+      text_rect.centerx = self.width / 2
+      text_rect.centery = self.height / 8
+      self.screen.blit(text, text_rect)
 
     pygame.display.update()
 
