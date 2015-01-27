@@ -82,10 +82,12 @@ class App:
 
     self.screen.fill((0, 0, 0))
 
-    # Drag ground
+    # Draw ground
     pygame.draw.rect(self.screen, (255, 255, 255), (0, 300, 640, 400))
 
+    # Draw lander
     self.lander.on_render(self.screen)
+
     pygame.display.flip()
 
   #
