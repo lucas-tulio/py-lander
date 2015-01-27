@@ -10,20 +10,28 @@ class Lander:
     self.speed_x = 0.0
     self.speed_y = 0.0
 
-    self.size = 20.0
     self.color = (255, 255, 255)
 
-  def on_loop(self, gravity):
+  def on_loop(self, gravity_acceleration):
 
+    # Add gravity to speed Y
+    self.speed_y = self.speed_y + gravity_acceleration
+    
+    # Ship's speed
     self.x = self.x + self.speed_x
-
-    self.speed_y = self.speed_y + gravity
     self.y = self.y + self.speed_y
 
   def on_render(self, screen):
     pygame.draw.polygon(screen, self.color, (
       (self.x, self.y),
-      (self.x + self.size, self.y - self.size),
-      (self.x + self.size * 2, self.y - self.size),
-      (self.x + self.size * 3, self.y)
+      (self.x, self.y - 8.0),
+      (self.x + 4.0, self.y - 12.0),
+      (self.x + 8.0, self.y - 12.0),
+      (self.x + 12.0, self.y - 8.0),
+      (self.x + 12.0, self.y),
+      (self.x + 16.0, self.y),
+      (self.x + 12.0, self.y - 4.0),
+      (self.x + 12.0, self.y),
+      (self.x - 4.0, self.y),
+      (self.x, self.y - 4.0)
       ), 1)
