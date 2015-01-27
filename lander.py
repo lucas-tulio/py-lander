@@ -23,15 +23,12 @@ class Lander:
 
   def on_render(self, screen):
     pygame.draw.polygon(screen, self.color, (
+      
+      # Ship body
       (self.x, self.y),
       (self.x, self.y - 8.0),
       (self.x + 4.0, self.y - 12.0),
       (self.x + 8.0, self.y - 12.0),
       (self.x + 12.0, self.y - 8.0),
-      (self.x + 12.0, self.y),
-      (self.x + 16.0, self.y),
-      (self.x + 12.0, self.y - 4.0),
-      (self.x + 12.0, self.y),
-      (self.x - 4.0, self.y),
-      (self.x, self.y - 4.0)
+      (self.x + 12.0, self.y)
       ), 1)
