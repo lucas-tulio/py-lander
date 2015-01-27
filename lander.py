@@ -54,23 +54,11 @@ class Lander:
     self.y = self.y + self.speed_y
 
   def on_render(self, screen):
-
-    if self.is_rekt:
-      pygame.draw.polygon(screen, self.current_color, (
-      (self.x, self.y),
-      (self.x, self.y - self.size*2),
-      (self.x + self.size, self.y - self.size*3),
-      (self.x + self.size*2, self.y - self.size*3),
-      (self.x + self.size*3, self.y - self.size*2),
-      (self.x + self.size*3, self.y)
-      ), 0)
-    else:
-      pygame.draw.polygon(screen, self.current_color, (
-      (self.x, self.y),
-      (self.x, self.y - self.size*2),
-      (self.x + self.size, self.y - self.size*3),
-      (self.x + self.size*2, self.y - self.size*3),
-      (self.x + self.size*3, self.y - self.size*2),
-      (self.x + self.size*3, self.y)
-      ), 0)
-    
+    pygame.draw.polygon(screen, self.current_color, (
+    (self.x, self.y),
+    (self.x, self.y - self.size*2),
+    (self.x + self.size, self.y - self.size*3),
+    (self.x + self.size*2, self.y - self.size*3),
+    (self.x + self.size*3, self.y - self.size*2),
+    (self.x + self.size*3, self.y)
+    ), 0)
