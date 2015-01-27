@@ -18,8 +18,11 @@ class Lander:
 
     self.is_rekt = False
 
+    # Colors
     self.normal_color = (255, 255, 255)
+    self.out_of_fuel_color = (128, 128, 0)
     self.rekt_color = (255, 0, 0)
+    self.current_color = self.normal_color
 
   def on_loop(self, gravity_acceleration, holding_right, holding_left, holding_up):
 
@@ -38,6 +41,14 @@ class Lander:
         self.fuel = self.fuel - self.fuel_delta
         self.speed_y = self.speed_y - self.acceleration_y
 
+    # Fuel status
+    if self.is_rekt:
+      self.current_color = self.rekt_color
+    elif self.fuel <= 0:
+      self.current_color = self.out_of_fuel_color
+    else:
+      self.current_color = self.normal_color
+
     # Ship's speed
     self.x = self.x + self.speed_x
     self.y = self.y + self.speed_y
@@ -45,7 +56,7 @@ class Lander:
   def on_render(self, screen):
 
     if self.is_rekt:
-      pygame.draw.polygon(screen, self.rekt_color, (
+      pygame.draw.polygon(screen, self.current_color, (
       (self.x, self.y),
       (self.x, self.y - self.size*2),
       (self.x + self.size, self.y - self.size*3),
@@ -54,7 +65,7 @@ class Lander:
       (self.x + self.size*3, self.y)
       ), 0)
     else:
-      pygame.draw.polygon(screen, self.normal_color, (
+      pygame.draw.polygon(screen, self.current_color, (
       (self.x, self.y),
       (self.x, self.y - self.size*2),
       (self.x + self.size, self.y - self.size*3),

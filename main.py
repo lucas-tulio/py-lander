@@ -85,8 +85,9 @@ class App:
     if self.lander.y >= self.height - self.ground_height:
       
       # Check if rekt
-      if self.lander.speed_y > 1.0:
+      if self.lander.speed_y >= 1.0:
         self.lander.is_rekt = True
+        self.lander.current_color = self.lander.rekt_color
 
       # Stop
       self.lander.speed_x = 0
