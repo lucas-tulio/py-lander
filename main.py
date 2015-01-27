@@ -10,6 +10,8 @@ class App:
     self.screen = None
     self.size = self.weight, self.height = 640, 400
 
+    self.gravity = 0.0
+
   #
   # Game setup
   #
@@ -27,19 +29,32 @@ class App:
   # Process input
   #
   def on_event(self, event):
-    if event.type == pygame.QUIT:
+
+    if event.type == pygame.KEYDOWN:
+      if event.key == pygame.K_LEFT:
+        self.lander.speed_x = self.lander.speed_x - 0.1
+      elif event.key == pygame.K_RIGHT:
+        self.lander.speed_x = self.lander.speed_x + 0.1
+      elif event.key == pygame.K_UP:
+        self.lander.speed_y = self.lander.speed_y - 0.1
+      elif event.key == pygame.K_DOWN:
+        self.lander.speed_y = self.lander.speed_y + 0.1
+    elif event.type == pygame.QUIT:
       self._running = False
 
   #
   # Main game logic
   #
   def on_loop(self):
+    self.lander.on_loop(self.gravity)
     pass
 
   #
   # Render
   #
   def on_render(self):
+
+    self.screen.fill((0, 0, 0))
     self.lander.on_render(self.screen);
     pygame.display.flip()
 
