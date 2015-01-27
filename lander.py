@@ -4,11 +4,11 @@ class Lander:
 
   def __init__(self):
 
-    self.x = 50.0
+    self.x = -10.0
     self.y = 50.0
     self.size = 4.0
 
-    self.speed_x = 0.1
+    self.speed_x = 3.0
     self.speed_y = 0.0
 
     self.acceleration_x = 0.05
