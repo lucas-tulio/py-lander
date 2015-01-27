@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 from lander import Lander
+from random import randint
 
 class App:
 
@@ -8,15 +9,21 @@ class App:
 
     self._running = True
     self.screen = None
-    self.size = self.weight, self.height = 640, 400
+    self.size = self.width, self.height = 1200, 600
 
-    # Gravity
+    # Basic settings
     self.gravity = 0.0001
+    self.ground_height = 100
 
     # Controls
     self.holding_left = False
     self.holding_right = False
     self.holding_up = False
+
+    # Space
+    self.space = []
+    for i in range(0, 50):
+      self.space.append((randint(0, self.width), randint(0, self.height)))
 
   #
   # Game setup
@@ -65,7 +72,7 @@ class App:
     self.lander.on_loop(self.gravity, self.holding_right, self.holding_left, self.holding_up)
 
     # Check ground collision
-    if self.lander.y >= 300:
+    if self.lander.y >= self.height - self.ground_height:
       self.lander.speed_x = 0
       self.lander.speed_y = 0
 
@@ -77,7 +84,13 @@ class App:
     self.screen.fill((0, 0, 0))
 
     # Draw ground
-    pygame.draw.rect(self.screen, (255, 255, 255), (0, 300, 640, 400))
+    pygame.draw.rect(self.screen, (255, 255, 255),
+      (0, self.height - self.ground_height, self.width, self.height))
+
+    # Draw space
+    for star in self.space:
+      #pygame.draw.point(self.screen, (255, 255, 255), (star[0], star[1]))
+      self.screen.set_at((star[0], star[1]), (255, 255, 255))
 
     # Draw lander
     self.lander.on_render(self.screen)
