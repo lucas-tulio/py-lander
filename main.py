@@ -42,8 +42,6 @@ class App:
         self.moving_right = True
       elif event.key == pygame.K_UP:
         self.moving_up = True
-      elif event.key == pygame.K_DOWN:
-        self.moving_down = True
 
     # Key Up
     elif event.type == pygame.KEYUP:
@@ -53,8 +51,6 @@ class App:
         self.moving_right = False
       elif event.key == pygame.K_UP:
         self.moving_up = False
-      elif event.key == pygame.K_DOWN:
-        self.moving_down = False
     elif event.type == pygame.QUIT:
       self._running = False
 
