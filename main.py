@@ -1,34 +1,56 @@
 import pygame
 from pygame.locals import *
+from lander import Lander
 
 class App:
 
   def __init__(self):
 
     self._running = True
-    self._display_surf = None
+    self._display_surface = None
     self.size = self.weight, self.height = 640, 400
 
+  #
+  # Game setup
+  #
   def on_init(self):
 
     pygame.init()
-    self._display_surf = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF)
+    self._display_surface = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF)
     self._running = True
     pygame.display.set_caption("py-lander")
 
+    # Create our Lander
+    self.lander = Lander(self._display_surface)
+
+  #
+  # Process input
+  #
   def on_event(self, event):
     if event.type == pygame.QUIT:
       self._running = False
 
+  #
+  # Main game logic
+  #
   def on_loop(self):
     pass
 
+  #
+  # Render
+  #
   def on_render(self):
-    pass
+    self.lander.on_render();
 
+  #
+  # Ends the game
+  #
   def on_cleanup(self):
     pygame.quit()
 
+  #
+  # Starts the game
+  #
   def on_execute(self):
     if self.on_init() == False:
       self._running = False
