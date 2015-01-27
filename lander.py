@@ -42,4 +42,4 @@ class Lander:
       (self.x + self.size*2, self.y - self.size*3),
       (self.x + self.size*3, self.y - self.size*2),
       (self.x + self.size*3, self.y)
-      ), 1)
+      ), 0)
