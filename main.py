@@ -14,10 +14,9 @@ class App:
     self.gravity = 0.0001
 
     # Controls
-    self.pressing_left = False
-    self.pressing_right = False
-    self.pressing_up = False
-    self.pressing_down = False
+    self.holding_left = False
+    self.holding_right = False
+    self.holding_up = False
 
   #
   # Game setup
@@ -40,20 +39,20 @@ class App:
     # Key Down
     if event.type == pygame.KEYDOWN:
       if event.key == pygame.K_LEFT:
-        self.pressing_left = True
+        self.holding_left = True
       elif event.key == pygame.K_RIGHT:
-        self.pressing_right = True
+        self.holding_right = True
       elif event.key == pygame.K_UP:
-        self.pressing_up = True
+        self.holding_up = True
 
     # Key Up
     elif event.type == pygame.KEYUP:
       if event.key == pygame.K_LEFT:
-        self.pressing_left = False
+        self.holding_left = False
       elif event.key == pygame.K_RIGHT:
-        self.pressing_right = False
+        self.holding_right = False
       elif event.key == pygame.K_UP:
-        self.pressing_up = False
+        self.holding_up = False
     elif event.type == pygame.QUIT:
       self._running = False
 
@@ -62,14 +61,8 @@ class App:
   #
   def on_loop(self):
 
-    if self.pressing_left:
-      self.lander.speed_x = self.lander.speed_x - self.lander.acceleration_x
-    elif self.pressing_right:
-      self.lander.speed_x = self.lander.speed_x + self.lander.acceleration_x
-    elif self.pressing_up:
-      self.lander.speed_y = self.lander.speed_y - self.lander.acceleration_y
-
-    self.lander.on_loop(self.gravity)
+    # Ship logic (including controls and movement)
+    self.lander.on_loop(self.gravity, self.holding_right, self.holding_left, self.holding_up)
 
     # Check ground collision
     if self.lander.y >= 300:
