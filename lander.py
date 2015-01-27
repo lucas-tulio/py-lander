@@ -7,12 +7,14 @@ class Lander:
     self.x = -10.0
     self.y = 50.0
     self.size = 4.0
+    self.fuel = 100.0
+    self.fuel_delta = 0.1
 
-    self.speed_x = 3.0
+    self.speed_x = 1.0
     self.speed_y = 0.0
 
-    self.acceleration_x = 0.05
-    self.acceleration_y = 0.05
+    self.acceleration_x = 0.02
+    self.acceleration_y = 0.02
 
     self.is_rekt = False
 
@@ -23,14 +25,18 @@ class Lander:
 
     # Add gravity to speed Y
     self.speed_y = self.speed_y + gravity_acceleration
-    
+
     # Check which keys are being pressed and change the ship's speed accordingly
-    if holding_right:
-      self.speed_x = self.speed_x + self.acceleration_x
-    elif holding_left:
-      self.speed_x = self.speed_x - self.acceleration_x
-    if holding_up:
-      self.speed_y = self.speed_y - self.acceleration_y
+    if self.fuel > 0.0:
+      if holding_right:
+        self.fuel = self.fuel - self.fuel_delta
+        self.speed_x = self.speed_x + self.acceleration_x
+      elif holding_left:
+        self.fuel = self.fuel - self.fuel_delta
+        self.speed_x = self.speed_x - self.acceleration_x
+      if holding_up:
+        self.fuel = self.fuel - self.fuel_delta
+        self.speed_y = self.speed_y - self.acceleration_y
 
     # Ship's speed
     self.x = self.x + self.speed_x

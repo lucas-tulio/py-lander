@@ -26,7 +26,7 @@ class App:
 
     # Space
     self.space = []
-    for i in range(0, 50):
+    for i in range(0, 500):
       self.space.append((randint(0, self.width), randint(0, self.height)))
 
   #
@@ -118,6 +118,14 @@ class App:
       text_rect.centerx = self.width / 2
       text_rect.centery = self.height / 8
       self.screen.blit(text, text_rect)
+
+    # Draw UI
+    speed_x_text = self.font.render("speed_x: " + str(self.lander.speed_x), 1, (255, 255, 255))
+    speed_y_text = self.font.render("speed_y: " + str(self.lander.speed_y), 1, (255, 255, 255))
+    fuel_text = self.font.render("fuel: " + str(self.lander.fuel), 1, (255, 255, 255))
+    self.screen.blit(speed_x_text, (0, 0))
+    self.screen.blit(speed_y_text, (0, 20))
+    self.screen.blit(fuel_text, (0, 40))
 
     pygame.display.update()
 
