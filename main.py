@@ -53,6 +53,10 @@ class App:
       elif event.key == pygame.K_UP:
         self.holding_up = True
 
+      elif event.key == pygame.K_r:
+        self.on_init()
+        
+
     # Key Up
     elif event.type == pygame.KEYUP:
       if event.key == pygame.K_LEFT:
