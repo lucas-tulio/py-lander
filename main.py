@@ -55,7 +55,6 @@ class App:
 
       elif event.key == pygame.K_r:
         self.on_init()
-        
 
     # Key Up
     elif event.type == pygame.KEYUP:
@@ -76,10 +75,18 @@ class App:
     self.clock.tick(60)
 
     # Ship logic (including controls and movement)
-    self.lander.on_loop(self.gravity, self.holding_right, self.holding_left, self.holding_up)
+    if not self.lander.is_rekt:
+      self.lander.on_loop(self.gravity, self.holding_right, self.holding_left, self.holding_up)
 
     # Check ground collision
     if self.lander.y >= self.height - self.ground_height:
+      
+      # Check if rekt
+      if self.lander.speed_y > 1.0:
+        print "rekt"
+        self.lander.is_rekt = True
+
+      # Stop
       self.lander.speed_x = 0
       self.lander.speed_y = 0
 
@@ -88,21 +95,21 @@ class App:
   #
   def on_render(self):
 
+    # Clear screen
     self.screen.fill((0, 0, 0))
-
-    # Draw ground
-    pygame.draw.rect(self.screen, (255, 255, 255),
-      (0, self.height - self.ground_height, self.width, self.height))
 
     # Draw space
     for star in self.space:
-      #pygame.draw.point(self.screen, (255, 255, 255), (star[0], star[1]))
       self.screen.set_at((star[0], star[1]), (255, 255, 255))
 
     # Draw lander
     self.lander.on_render(self.screen)
 
-    pygame.display.flip()
+    # Draw ground
+    pygame.draw.rect(self.screen, (255, 255, 255),
+      (0, self.height - self.ground_height, self.width, self.height))
+
+    pygame.display.update()
 
   #
   # Ends the game

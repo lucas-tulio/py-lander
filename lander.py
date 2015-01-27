@@ -14,7 +14,10 @@ class Lander:
     self.acceleration_x = 0.05
     self.acceleration_y = 0.05
 
-    self.color = (255, 255, 255)
+    self.is_rekt = False
+
+    self.normal_color = (255, 255, 255)
+    self.rekt_color = (255, 0, 0)
 
   def on_loop(self, gravity_acceleration, holding_right, holding_left, holding_up):
 
@@ -35,7 +38,8 @@ class Lander:
 
   def on_render(self, screen):
 
-    pygame.draw.polygon(screen, self.color, (
+    if self.is_rekt:
+      pygame.draw.polygon(screen, self.rekt_color, (
       (self.x, self.y),
       (self.x, self.y - self.size*2),
       (self.x + self.size, self.y - self.size*3),
@@ -43,3 +47,13 @@ class Lander:
       (self.x + self.size*3, self.y - self.size*2),
       (self.x + self.size*3, self.y)
       ), 0)
+    else:
+      pygame.draw.polygon(screen, self.normal_color, (
+      (self.x, self.y),
+      (self.x, self.y - self.size*2),
+      (self.x + self.size, self.y - self.size*3),
+      (self.x + self.size*2, self.y - self.size*3),
+      (self.x + self.size*3, self.y - self.size*2),
+      (self.x + self.size*3, self.y)
+      ), 0)
+    
