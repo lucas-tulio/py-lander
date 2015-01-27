@@ -10,10 +10,11 @@ class App:
     self._running = True
     self.screen = None
     self.size = self.width, self.height = 1200, 600
+    self.clock = pygame.time.Clock()
 
     # Basic settings
-    self.gravity = 0.0001
-    self.ground_height = 100
+    self.gravity = 0.01
+    self.ground_height = 60
 
     # Controls
     self.holding_left = False
@@ -67,6 +68,8 @@ class App:
   # Main game logic
   #
   def on_loop(self):
+
+    self.clock.tick(60)
 
     # Ship logic (including controls and movement)
     self.lander.on_loop(self.gravity, self.holding_right, self.holding_left, self.holding_up)

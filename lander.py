@@ -11,8 +11,8 @@ class Lander:
     self.speed_x = 0.1
     self.speed_y = 0.0
 
-    self.acceleration_x = 0.0005
-    self.acceleration_y = 0.0005
+    self.acceleration_x = 0.05
+    self.acceleration_y = 0.05
 
     self.color = (255, 255, 255)
 
