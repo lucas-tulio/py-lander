@@ -2,10 +2,11 @@ import pygame
 
 class Lander:
 
-  def __init__(self, surface):
-    self.surface = surface
-    self.x = 10.0
-    self.y = 10.0
+  def __init__(self):
+    self.x = 50.0
+    self.y = 50.0
+    self.size = 20.0
+    self.color = (255, 255, 255)
 
-  def on_render(self):
-    pygame.draw.polygon(self.surface, (255, 255, 255), ((self.x, self.y), (self.x + 10, self.y + 20), (self.x + 30, self.y + 50)), 3)
+  def on_render(self, screen):
+    pygame.draw.polygon(screen, self.color, ((self.x, self.y), (self.x + self.size, self.y - self.size), (self.x + self.size * 2, self.y - self.size), (self.x + self.size * 3, self.y)), 1)

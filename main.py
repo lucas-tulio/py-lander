@@ -7,7 +7,7 @@ class App:
   def __init__(self):
 
     self._running = True
-    self._display_surface = None
+    self.screen = None
     self.size = self.weight, self.height = 640, 400
 
   #
@@ -16,12 +16,12 @@ class App:
   def on_init(self):
 
     pygame.init()
-    self._display_surface = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF)
+    self.screen = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF)
     self._running = True
     pygame.display.set_caption("py-lander")
 
     # Create our Lander
-    self.lander = Lander(self._display_surface)
+    self.lander = Lander()
 
   #
   # Process input
@@ -40,7 +40,8 @@ class App:
   # Render
   #
   def on_render(self):
-    self.lander.on_render();
+    self.lander.on_render(self.screen);
+    pygame.display.flip()
 
   #
   # Ends the game
