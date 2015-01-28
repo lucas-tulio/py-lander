@@ -54,6 +54,7 @@ class Lander:
     self.y = self.y + self.speed_y
 
   def on_render(self, screen):
+    
     pygame.draw.polygon(screen, self.current_color, (
     (self.x, self.y),
     (self.x, self.y - self.size*2),

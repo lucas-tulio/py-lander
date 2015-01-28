@@ -120,13 +120,16 @@ class App:
       text_rect.centery = self.height / 8
       self.screen.blit(text, text_rect)
 
-    # Draw UI
-    speed_x_text = self.font.render("speed_x: " + str(self.lander.speed_x), 1, (255, 255, 255))
-    speed_y_text = self.font.render("speed_y: " + str(self.lander.speed_y), 1, (255, 255, 255))
-    fuel_text = self.font.render("fuel: " + str(self.lander.fuel), 1, (255, 255, 255))
-    self.screen.blit(speed_x_text, (0, 0))
-    self.screen.blit(speed_y_text, (0, 20))
-    self.screen.blit(fuel_text, (0, 40))
+    # Draw the speed
+    # speed_x_text = self.font.render("speed_x: " + str(self.lander.speed_x), 1, (255, 255, 255))
+    # speed_y_text = self.font.render("speed_y: " + str(self.lander.speed_y), 1, (255, 255, 255))
+    # self.screen.blit(speed_x_text, (20, 20))
+    # self.screen.blit(speed_y_text, (20, 40))
+    fuel_text = self.font.render("Fuel", 1, (255, 255, 255))
+    self.screen.blit(fuel_text, (20, 40))
+
+    # Draw the fuel bar
+    pygame.draw.rect(self.screen, (255, 255, 255), (20, 20, ((self.width - 40) * (self.lander.fuel / 100.0)), 20), 0)
 
     pygame.display.update()
 
