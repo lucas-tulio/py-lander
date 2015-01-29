@@ -29,6 +29,12 @@ class App:
     for i in range(0, 500):
       self.space.append((randint(0, self.width), randint(0, self.height)))
 
+    # Walls
+    self.walls = []
+    for i in range(0, 10):
+      rect = pygame.Rect(0 * i * 50, 0 * i * 50, 20, 20)
+      self.walls.append(rect)
+
   #
   # Game setup
   #
@@ -112,6 +118,10 @@ class App:
     pygame.draw.rect(self.screen, (255, 255, 255),
       (0, self.height - self.ground_height, self.width, self.height))
 
+    # Draw walls
+    # for wall in self.walls:
+    #   pygame.draw.rect(self.screen, (255, 255, 255), wall)
+
     # Draw message if rekt
     if self.lander.is_rekt:
       text = self.font.render("Rekt! Press R to try again", 1, (255, 255, 255))
@@ -121,10 +131,6 @@ class App:
       self.screen.blit(text, text_rect)
 
     # Draw the speed
-    # speed_x_text = self.font.render("speed_x: " + str(self.lander.speed_x), 1, (255, 255, 255))
-    # speed_y_text = self.font.render("speed_y: " + str(self.lander.speed_y), 1, (255, 255, 255))
-    # self.screen.blit(speed_x_text, (20, 20))
-    # self.screen.blit(speed_y_text, (20, 40))
     fuel_text = self.font.render("Fuel", 1, (255, 255, 255))
     self.screen.blit(fuel_text, (20, 40))
 
