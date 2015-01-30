@@ -11,12 +11,12 @@ class App:
 
     self._running = True
     self.screen = None
-    self.size = self.width, self.height = 1200, 600
+    self.size = self.width, self.height = 600, 300
     self.clock = pygame.time.Clock()
 
     # Basic settings
     self.gravity = 0.01
-    self.ground_height = 60
+    self.ground_height = 30
 
     # Controls
     self.holding_left = False
