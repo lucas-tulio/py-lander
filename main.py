@@ -2,7 +2,6 @@ import pygame
 from pygame.locals import *
 from lander import Lander
 from random import randint
-from pygame import freetype
 from pygame import mixer
 
 class App:
