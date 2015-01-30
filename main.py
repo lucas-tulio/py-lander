@@ -94,7 +94,7 @@ class App:
       self.lander.on_loop(self.gravity, self.holding_right, self.holding_left, self.holding_up)
 
     # Check ground collision
-    if self.lander.y >= self.height - self.ground_height:
+    if not (self.lander.is_rekt or self.lander.is_landed) and self.lander.y >= self.height - self.ground_height:
 
       # Check if rekt
       if self.lander.speed_y >= 1.0:
@@ -108,6 +108,7 @@ class App:
         self.lander.is_landed = True
 
         if not self.played_landing_sound:
+          self.engine_sound.stop()
           self.landing_sound.play()
           self.played_landing_sound = True
 
