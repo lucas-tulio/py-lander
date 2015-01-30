@@ -134,6 +134,10 @@ class App:
     # Clear screen
     self.screen.fill((0, 0, 0))
 
+    # Draw the score multiplier
+    multiplier_text = self.font.render("Score x" + str(self.score_multiplier), 1, (255, 255, 255))
+    self.screen.blit(multiplier_text, (20, 40))
+
     # Draw space
     for star in self.space:
       self.screen.set_at((star[0], star[1]), (255, 255, 255))
@@ -153,16 +157,12 @@ class App:
       text_rect.centery = 80
       self.screen.blit(text, text_rect)
     elif self.lander.is_landed:
-      score = int(self.lander.fuel * 800 * self.score_multiplier)
+      score = int(self.lander.fuel * 800 * self.score_multiplier / 100) * 100
       text = self.font.render("A perfect landing! Score: " + str(score), 1, (255, 255, 255))
       text_rect = text.get_rect()
       text_rect.centerx = self.width / 2
       text_rect.centery = 80
       self.screen.blit(text, text_rect)
-
-    # Draw the speed
-    fuel_text = self.font.render("Fuel", 1, (255, 255, 255))
-    self.screen.blit(fuel_text, (20, 40))
 
     # Draw the fuel bar
     pygame.draw.rect(self.screen, (255, 255, 255), (20, 20, ((self.width - 40) * (self.lander.fuel / 25.0)), 20), 0)
