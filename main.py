@@ -12,20 +12,6 @@ class App:
     self.size = self.width, self.height = 600, 300
     self.clock = pygame.time.Clock()
 
-    # Basic settings
-    self.gravity = 0.01
-    self.ground_height = 30
-
-    # Controls
-    self.holding_left = False
-    self.holding_right = False
-    self.holding_up = False
-
-    # Space
-    self.space = []
-    for i in range(0, 500):
-      self.space.append((randint(0, self.width), randint(0, self.height)))
-
   #
   # Game setup
   #
@@ -52,6 +38,20 @@ class App:
     # Score multiplier
     self.score_multiplier = 1.0
     self.can_multiply = True
+
+    # Basic settings
+    self.gravity = 0.01
+    self.ground_height = 30
+
+    # Controls
+    self.holding_left = False
+    self.holding_right = False
+    self.holding_up = False
+
+    # Space
+    self.space = []
+    for i in range(0, 500):
+      self.space.append((randint(0, self.width), randint(0, self.height)))
 
   #
   # Process input
