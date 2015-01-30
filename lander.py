@@ -7,7 +7,7 @@ class Lander:
     self.x = -10.0
     self.y = 50.0
     self.size = 4.0
-    self.fuel = 100.0
+    self.fuel = 25.0
     self.fuel_delta = 0.1
 
     self.speed_x = 1.5

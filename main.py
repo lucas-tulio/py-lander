@@ -143,7 +143,7 @@ class App:
       text_rect.centery = 80
       self.screen.blit(text, text_rect)
     elif self.lander.is_landed:
-      score = int(self.lander.fuel) * 100
+      score = int(self.lander.fuel) * 800
       text = self.font.render("A perfect landing! Score: " + str(score), 1, (255, 255, 255))
       text_rect = text.get_rect()
       text_rect.centerx = self.width / 2
@@ -155,7 +155,7 @@ class App:
     self.screen.blit(fuel_text, (20, 40))
 
     # Draw the fuel bar
-    pygame.draw.rect(self.screen, (255, 255, 255), (20, 20, ((self.width - 40) * (self.lander.fuel / 100.0)), 20), 0)
+    pygame.draw.rect(self.screen, (255, 255, 255), (20, 20, ((self.width - 40) * (self.lander.fuel / 25.0)), 20), 0)
 
     pygame.display.update()
 
