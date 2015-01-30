@@ -97,7 +97,7 @@ class App:
     if not (self.lander.is_rekt or self.lander.is_landed) and self.lander.y >= self.height - self.ground_height:
 
       # Check if rekt
-      if self.lander.speed_y >= 1.0:
+      if self.lander.speed_y >= 1.0 or self.lander.speed_x >= 1.0:
         
         self.lander.is_rekt = True
         self.lander.current_color = self.lander.rekt_color
@@ -143,7 +143,8 @@ class App:
       text_rect.centery = 80
       self.screen.blit(text, text_rect)
     elif self.lander.is_landed:
-      text = self.font.render("A perfect landing!", 1, (255, 255, 255))
+      score = int(self.lander.fuel) * 100
+      text = self.font.render("A perfect landing! Score: " + str(score), 1, (255, 255, 255))
       text_rect = text.get_rect()
       text_rect.centerx = self.width / 2
       text_rect.centery = 80
