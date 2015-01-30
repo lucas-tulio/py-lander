@@ -17,6 +17,7 @@ class Lander:
     self.acceleration_y = 0.02
 
     self.is_rekt = False
+    self.is_landed = False
 
     # Colors
     self.normal_color = (255, 255, 255)

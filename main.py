@@ -42,7 +42,6 @@ class App:
     self.engine_sound = pygame.mixer.Sound("./sounds/engine.wav")
     self.landing_sound = pygame.mixer.Sound("./sounds/landing.wav")
     self.rekt_sound = pygame.mixer.Sound("./sounds/rekt.wav")
-    
     self.played_landing_sound = False
     self.played_rekt_sound = False
 
@@ -58,7 +57,7 @@ class App:
 
     # Key Down
     if event.type == pygame.KEYDOWN:
-      if not self.lander.is_rekt:
+      if not self.lander.is_rekt and not self.lander.is_landed:
         if event.key == pygame.K_LEFT:
           self.engine_sound.play(loops=1)
           self.holding_left = True
@@ -91,12 +90,12 @@ class App:
     self.clock.tick(60)
 
     # Ship logic (including controls and movement)
-    if not self.lander.is_rekt:
+    if not self.lander.is_rekt and not self.lander.is_landed:
       self.lander.on_loop(self.gravity, self.holding_right, self.holding_left, self.holding_up)
 
     # Check ground collision
     if self.lander.y >= self.height - self.ground_height:
-      
+
       # Check if rekt
       if self.lander.speed_y >= 1.0:
         
@@ -105,6 +104,8 @@ class App:
         self.rekt_sound.play()
 
       else:
+
+        self.lander.is_landed = True
 
         if not self.played_landing_sound:
           self.landing_sound.play()
@@ -138,7 +139,13 @@ class App:
       text = self.font.render("Rekt! Press R to try again", 1, (255, 255, 255))
       text_rect = text.get_rect()
       text_rect.centerx = self.width / 2
-      text_rect.centery = self.height / 8
+      text_rect.centery = 80
+      self.screen.blit(text, text_rect)
+    elif self.lander.is_landed:
+      text = self.font.render("A perfect landing!", 1, (255, 255, 255))
+      text_rect = text.get_rect()
+      text_rect.centerx = self.width / 2
+      text_rect.centery = 80
       self.screen.blit(text, text_rect)
 
     # Draw the speed
