@@ -50,6 +50,10 @@ class App:
     # Create our Lander
     self.lander = Lander()
 
+    # Score multiplier
+    self.score_multiplier = 1.0
+    self.can_multiply = True
+
   #
   # Process input
   #
@@ -57,6 +61,9 @@ class App:
 
     # Key Down
     if event.type == pygame.KEYDOWN:
+
+      self.can_multiply = False
+
       if not self.lander.is_rekt and not self.lander.is_landed:
         if event.key == pygame.K_LEFT:
           self.engine_sound.play(loops=1)
@@ -68,7 +75,7 @@ class App:
           self.engine_sound.play(loops=1)
           self.holding_up = True
 
-      elif event.key == pygame.K_r:
+      if event.key == pygame.K_r:
         self.on_init()
 
     # Key Up
@@ -88,6 +95,9 @@ class App:
   def on_loop(self):
 
     self.clock.tick(60)
+
+    if self.can_multiply:
+      self.score_multiplier = self.score_multiplier + 0.01
 
     # Ship logic (including controls and movement)
     if not self.lander.is_rekt and not self.lander.is_landed:
@@ -143,7 +153,7 @@ class App:
       text_rect.centery = 80
       self.screen.blit(text, text_rect)
     elif self.lander.is_landed:
-      score = int(self.lander.fuel) * 800
+      score = int(self.lander.fuel * 800 * self.score_multiplier)
       text = self.font.render("A perfect landing! Score: " + str(score), 1, (255, 255, 255))
       text_rect = text.get_rect()
       text_rect.centerx = self.width / 2
