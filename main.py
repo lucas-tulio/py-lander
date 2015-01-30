@@ -58,15 +58,16 @@ class App:
 
     # Key Down
     if event.type == pygame.KEYDOWN:
-      if event.key == pygame.K_LEFT:
-        self.engine_sound.play(loops=1)
-        self.holding_left = True
-      elif event.key == pygame.K_RIGHT:
-        self.engine_sound.play(loops=1)
-        self.holding_right = True
-      elif event.key == pygame.K_UP:
-        self.engine_sound.play(loops=1)
-        self.holding_up = True
+      if not self.lander.is_rekt:
+        if event.key == pygame.K_LEFT:
+          self.engine_sound.play(loops=1)
+          self.holding_left = True
+        elif event.key == pygame.K_RIGHT:
+          self.engine_sound.play(loops=1)
+          self.holding_right = True
+        elif event.key == pygame.K_UP:
+          self.engine_sound.play(loops=1)
+          self.holding_up = True
 
       elif event.key == pygame.K_r:
         self.on_init()
