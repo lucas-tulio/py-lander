@@ -95,6 +95,7 @@ class App:
 
     self.clock.tick(60)
 
+    # Score multiplier
     if self.can_multiply:
       self.score_multiplier = self.score_multiplier + 0.01
 
