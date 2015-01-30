@@ -150,17 +150,34 @@ class App:
 
     # Show rekt message
     if self.lander.is_rekt:
+
       text = self.font.render("Rekt! Press R to try again", 1, (255, 255, 255))
       text_rect = text.get_rect()
       text_rect.centerx = self.width / 2
       text_rect.centery = 80
       self.screen.blit(text, text_rect)
+
     elif self.lander.is_landed:
-      score = int(self.lander.fuel * 800 * self.score_multiplier / 100) * 100
-      text = self.font.render("A perfect landing! Score: " + str(score), 1, (255, 255, 255))
+
+      text = self.font.render("A perfect landing!", 1, (255, 255, 255))
       text_rect = text.get_rect()
       text_rect.centerx = self.width / 2
       text_rect.centery = 80
+      self.screen.blit(text, text_rect)
+
+      fuel_score = int(self.lander.fuel * 10)
+      total_score = int(fuel_score * self.score_multiplier) * 10
+
+      text = self.font.render(str(fuel_score) + " fuel x " + str(self.score_multiplier), 1, (255, 255, 255))
+      text_rect = text.get_rect()
+      text_rect.centerx = self.width / 2
+      text_rect.centery = 120
+      self.screen.blit(text, text_rect)
+
+      text = self.font.render("Score: " + str(total_score), 1, (255, 255, 255))
+      text_rect = text.get_rect()
+      text_rect.centerx = self.width / 2
+      text_rect.centery = 140
       self.screen.blit(text, text_rect)
 
     # Draw the fuel bar
