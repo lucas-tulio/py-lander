@@ -1,5 +1,5 @@
 # py-lander
-bro do you even space?
+Lander game made in Python with Pygame.
 
 Sounds made with http://www.bfxr.net/
 
